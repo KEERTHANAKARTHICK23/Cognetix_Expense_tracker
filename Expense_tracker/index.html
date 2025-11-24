@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Expense Tracker</h1>
+      <p class="subtitle">Track income & expenses — monthly summary & persistent storage</p>
+    </header>
+
+    <main>
+      <section class="left">
+        <div class="card form-card">
+          <h2 id="formTitle">Add Transaction</h2>
+          <form id="txForm">
+            <div class="row">
+              <label for="type">Type</label>
+              <select id="type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+
+            <div class="row">
+              <label for="amount">Amount</label>
+              <input id="amount" type="number" step="0.01" min="0" required />
+            </div>
+
+            <div class="row">
+              <label for="description">Description</label>
+              <input id="description" type="text" placeholder="e.g., Salary / Rent / Groceries" />
+            </div>
+
+            <div class="row">
+              <label for="category">Category (optional)</label>
+              <input id="category" type="text" placeholder="e.g., Food, Travel, Salary" />
+            </div>
+
+            <div class="row">
+              <label for="date">Date</label>
+              <input id="date" type="date" required />
+            </div>
+
+            <div class="actions">
+              <button id="submitBtn" type="submit">Add</button>
+              <button id="cancelEdit" type="button" class="secondary hidden">Cancel</button>
+            </div>
+
+            <p id="formError" class="error"></p>
+          </form>
+        </div>
+
+        <div class="card filters">
+          <label for="monthSelect">View Month</label>
+          <input id="monthSelect" type="month" />
+          <div class="legend">
+            <span class="legend-income">Income</span>
+            <span class="legend-expense">Expense</span>
+          </div>
+          <div class="clear">
+            <button id="clearAll" class="danger">Clear All Data</button>
+          </div>
+        </div>
+
+        <div class="card tx-list-card">
+          <h3>Transactions</h3>
+          <ul id="txList" class="tx-list"></ul>
+        </div>
+      </section>
+
+      <aside class="right">
+        <div class="card summary">
+          <h3>Monthly Summary</h3>
+          <p><strong>Income:</strong> <span id="totalIncome">₹0.00</span></p>
+          <p><strong>Expenses:</strong> <span id="totalExpense">₹0.00</span></p>
+          <p><strong>Balance:</strong> <span id="balance">₹0.00</span></p>
+          <div class="progress-wrap">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <h3>Breakdown</h3>
+          <canvas id="chart" width="300" height="200"></canvas>
+          <div id="chartLegend" class="chart-legend"></div>
+        </div>
+
+        <div class="card quick-totals">
+          <h3>Quick Totals (all time)</h3>
+          <p><strong>Total Income:</strong> <span id="allIncome">₹0.00</span></p>
+          <p><strong>Total Expense:</strong> <span id="allExpense">₹0.00</span></p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <small>Data saved to your browser (LocalStorage). Export/import or cloud sync can be added later.</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
